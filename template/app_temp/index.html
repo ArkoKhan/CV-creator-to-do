@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %} Home {% endblock %}
+<!-- ======================= b0dy ========================================= -->
+{% block 'mainbody' %}
+<main>
+  <h2>CV</h2>
+  <section>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3 class="cv_form_head">Personal info</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            minlength="3"
+            maxlength="50"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid name.</div>
+        </div>
+        <div class="form-group">
+          <label for="dob" class="form-label">Date of birth</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dob"
+            name="dob"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid date.</div>
+        </div>
+        <div class="form-group">
+          <label for="gender" class="form-label">Gender</label>
+          <select class="form-select" id="gender" name="gender" required>
+            <option value="" selected disabled>Choose...</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+          </select>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select a gender.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="image" class="form-label">Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="image"
+            name="image"
+            accept="image/*"
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please upload a valid image.</div>
+        </div>
+        <div class="form-group">
+          <label for="address" class="form-label">Address</label>
+          <textarea
+            class="form-control"
+            id="address"
+            name="address"
+            rows="3"
+            required
+          ></textarea>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid address.</div>
+        </div>
+        <div class="form-group">
+          <label for="summary" class="form-label">Summary</label>
+          <textarea
+            class="form-control"
+            id="summary"
+            name="summary"
+            rows="3"
+            required
+          ></textarea>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid address.</div>
+        </div>
+      </div>
+      <h3 class="cv_form_head">Education:</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="institute" class="form-label">Institute</label>
+          <input
+            type="text"
+            class="form-control"
+            id="institute"
+            name="institute"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid institute.</div>
+        </div>
+        <div class="form-group">
+          <label for="graduation_date" class="form-label"
+            >Graduation date</label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="graduation_date"
+            name="graduation_date"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid date.</div>
+        </div>
+      </div>
+      <h3 class="cv_form_head">Work Experience:</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="workplace" class="form-label">Workplace</label>
+          <input
+            type="text"
+            class="form-control"
+            id="workplace"
+            name="workplace"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid workplace.</div>
+        </div>
+        <div class="form-group">
+          <label for="start_date" class="form-label">Start date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="start_date"
+            name="start_date"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid date.</div>
+        </div>
+      </div>
+      <h3 class="cv_form_head">Skills:</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="skill_name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="skill_name"
+            name="skill_name"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid skill name.</div>
+        </div>
+        <div class="form-group">
+          <label for="skill_detail" class="form-label">Skill detail</label>
+          <textarea
+            class="form-control"
+            id="skill_detail"
+            name="skill_detail"
+            rows="3"
+            required
+          ></textarea>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid skill detail.</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+</main>
+{% endblock %}

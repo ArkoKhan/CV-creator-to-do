@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %} Scheduler {% endblock %}
+<!-- ======================= b0dy ========================================= -->
+{% block 'mainbody' %}
+<main class="scheduler_body">
+  <h3>save a date</h3>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="task" class="form-label">Task</label>
+      <input
+        type="text"
+        class="form-control"
+        id="task"
+        name="task"
+        maxlength="20"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="task_date" class="form-label">Task date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="task_date"
+        name="task_date"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="task_time" class="form-label">Task time</label>
+      <input
+        type="time"
+        class="form-control"
+        id="task_time"
+        name="task_time"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+  <h3>Scheduled Things</h3>
+  <ol class="list-group list-group-numbered task_list">
+    {% for t in scheduler %}
+    <li class="list-group-item list-group-item-action">
+      <button class="btn btn-primary done">
+        <i class="fa-solid fa-check"></i>
+      </button>
+      <span class="task">{{t.task}} at {{t.task_time}} on {{t.task_date}}</span>
+
+      <a href="{% url 'delete_task' t.id %}" class="btn btn-danger"
+        ><i class="fa-sharp fa-solid fa-trash"></i
+      ></a>
+    </li>
+    {% endfor %}
+  </ol>
+</main>
+{% endblock %}
