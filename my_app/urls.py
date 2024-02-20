@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home, scheduler, delete_task, cv, addEdu, addWork, addSkill, new_cv, pdfCv
+from .views import Home, scheduler, delete_task, cv, addEdu, addWork, addSkill, new_cv, pdfCv, html_to_pdf_view
 
 urlpatterns = [
     path('', Home, name="home"),
@@ -10,5 +10,6 @@ urlpatterns = [
     path('addWork', addWork, name='addWork'),
     path('addSkill', addSkill, name='addSkill'),
     path('new_cv/<int:id>/', new_cv, name='new_cv'),
-    path("pdfcv", pdfCv, name="pdfcv")
+    path("pdfcv", pdfCv, name="pdfcv"),
+    path("html_to_pdf_view", html_to_pdf_view, name="html_to_pdf_view"),
 ]

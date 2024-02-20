@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Scheduler, personalCV, Education, Work, Skils
 import os
+import pdfkit
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.template.loader import get_template
-from xhtml2pdf import pisa
+
 
 # Create your views here.
 def Home(request):
@@ -84,34 +86,28 @@ def addSkill(request):
 
 
 
-
-
-# PDF 
-def pdfCv(request):
+# PDF kit
+config = pdfkit.configuration(wkhtmltopdf=r"C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe")
+def html_to_pdf_view(request):
     cvs = personalCV.objects.all()
     education = Education.objects.all()
     work = Work.objects.all()
     skills = Skils.objects.all()
 
-    template_path = 'app_temp/pdfcv.html'
-    # context = {'myvar': 'this is your template context'}
-    # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = ' filename="cv.pdf"' 
-    #attachment;
-    # find the template and render it.
-    template = get_template(template_path)
-    html = template.render(locals())
 
-    # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
-    # link_callback=link_callback
-    # if error then show some funny view
+    # Render the HTML template with some data
+    html = render_to_string('app_temp/pdfcv.html', locals())
 
-    if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    # Convert the HTML to PDF
+    pdf = pdfkit.from_string(html, False, configuration=config)
+
+    # Create a response with the PDF file
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="CV.pdf"'
+
     return response
+
+
 
 
 def new_cv(request, id):

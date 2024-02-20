@@ -12,8 +12,117 @@
     />
    
     <!-- ==========css========== -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" /> -->
+    <style>
+     * {
+  margin: 0;
+  padding: 0;
+  font-family: arial;
+}
+main {
+  margin: 15px;
+}
+
+/* ========================= Navigation Start =========================== */
+
+.row {
+  width: 100%;
+}
+
+
+
+/* ========================= Navigation End =========================== */
+
+h1 {
+  margin-top: 10px;
+}
+h2 {
+  text-align: center;
+  background-color: rgb(40, 5, 117);
+  padding: 10px 0;
+  color: rgb(240, 240, 240);
+  font-weight: 800;
+
+}
+
+
+.cv_form_head {
+  margin-top: 30px;
+  display: block;
+  text-align: center;
+  background-color: rgb(236, 236, 236);
+}
+
+
+/* cv formating */
+.cv_body {
+  margin: 10px auto;
+  width: 1000px;
+}
+
+.cv_body h3 {
+  display: block;
+  padding-left: 5px;
+  /* text-align: center; */
+  background-color: rgb(223, 230, 255);
+}
+.cv_body .btn {
+  margin-right: 30px;
+}
+/* personal info sec */
+.cv_sec {
+  margin: 0;
+  padding: 0;
+  /* display: flex;  */
+  width: 100%;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: left;
+}
+
+.info .info_div {
+  display: flex;
+  margin: 0;
+  padding: 10px;
+  flex-grow: inherit;
+  flex-shrink: inherit;
+  flex-basis: content;
+  flex: content;
+  align-self: flex-start;
+  /* border: 1px solid black; */
+}
+
+.info_div p {
+  text-align: justify;
+  line-height: 24px;
+}
+
+.info img {
+  display: inline-block;
+  /* margin-top: -110px; */
+  height: 200px;
+  width: 200px;
+}
+ ul {
+  /* border: 1px solid black; */
+  display: block;
+}
+ul > li {
+  list-style: none;
+}
+span {
+  font-weight: 700;
+}
+
+
+    </style>
     <title>CV</title>
   </head>
   <body>
@@ -22,25 +131,26 @@
     <main class="cv_body">
       <section class="info cv_sec">
         {% for c in cvs %}
-        <div class="info_div">
+        <h2>{{c.name}}</h2>
+        <div class="info_div image">
           <img height="150px" width="150px" src="{{c.image.path}}" alt="" />
         </div>
         <div class="info_div">
-          <h4>{{c.name}}</h4>
+          <h4><strong>Summary</strong></h4>
           <p>{{c.summary}}</p>
         </div>
         {% endfor %}
       </section>
       <section class="per cv_sec">
         <h3>My Personal Informations</h3>
+        <ul>
         {% for c in cvs %}
-        
-          <p><strong>Name:</strong> {{c.name}}</p>
-          <p><strong>Date of Birth:</strong> {{c.dob}}</p>
-          <p><strong>Gender:</strong> {{c.gender}}</p>
-          <p><strong>Address:</strong> {{c.address}}</p>
-        
-        {% endfor %}
+          <li><strong>Name:</strong> {{c.name}}</li>
+          <li><strong>Date of Birth:</strong> {{c.dob}}</li>
+          <li><strong>Gender:</strong> {{c.gender}}</li>
+          <li><strong>Address:</strong> {{c.address}}</li>
+          {% endfor %}
+        </ul>
       </section>
       <section class="edu cv_sec">
         <h3>My Educational Background</h3>

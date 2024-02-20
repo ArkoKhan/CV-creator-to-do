@@ -104,7 +104,9 @@
         {% for c in cvs %}
         <a href="{% url 'new_cv' c.id %}" class="btn btn-success">Create new</a>
         {% endfor %}
-        <a href="{% url 'pdfcv' %}" class="btn btn-primary">
+
+        <!-- pdfkit -->
+        <a href="{% url 'html_to_pdf_view' %}" class="btn btn-primary">
           <i class="fa-solid fa-download"></i> Download
         </a>
       </section>
